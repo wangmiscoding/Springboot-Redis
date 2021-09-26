@@ -1,5 +1,7 @@
 package com.wangm.entity;
 
+import java.io.Serializable;
+
 import lombok.Data;
 
 /**
@@ -7,7 +9,7 @@ import lombok.Data;
  * @since 2021/9/20
  */
 @Data
-public class User {
+public class User implements Serializable {
 
     private Long userId;
     private String username;

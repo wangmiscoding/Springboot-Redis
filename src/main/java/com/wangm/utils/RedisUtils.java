@@ -36,6 +36,4 @@ public class RedisUtils {
     public static void init(StringRedisTemplate template) {
         stringRedisTemplate = template;
     }
-
-
 }
