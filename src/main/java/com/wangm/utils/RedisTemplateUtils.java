@@ -12,6 +12,7 @@ import org.springframework.data.redis.core.RedisTemplate;
  */
 public class RedisTemplateUtils {
 
+
     private static RedisTemplate<String, Object> redisTemplate;
 
 

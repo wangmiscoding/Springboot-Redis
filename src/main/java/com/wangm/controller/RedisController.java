@@ -1,8 +1,13 @@
 package com.wangm.controller;
 
+import java.util.List;
+
+import com.wangm.dao.UserMapper;
 import com.wangm.entity.User;
 import com.wangm.utils.RedisTemplateUtils;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,6 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class RedisController {
+
+    @Autowired
+    UserMapper userMapper;
 
     @GetMapping("add")
     public String add(User user) {
@@ -27,5 +35,18 @@ public class RedisController {
 //        return JSONObject.parseObject(s, User.class);
         return (User) RedisTemplateUtils.get(key);
     }
+
+    /**
+     * cacheNames:文件夹
+     * key:真实的key
+     *
+     * @return
+     */
+    @GetMapping("all")
+    @Cacheable(cacheNames = "member", key = "'allUser'")
+    public List<User> list() {
+        return userMapper.list();
+    }
+
 
 }
